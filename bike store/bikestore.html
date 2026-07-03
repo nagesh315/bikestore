@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotoVerse Luxury | Ultra HD Performance Showroom</title>
+    <style>
+        /* --- Global Resets & Variables --- */
+        :root {
+            --primary: #ff4500; 
+            --accent: #00b4d8;
+            --dark: #0a0c10;    
+            --card-bg: #12161f;
+            --light: #0f111a;
+            --text-main: #ffffff;
+            --text-muted: #a0aec0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: rgba(10, 12, 16, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* --- High-Quality Banner Slideshow --- */
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+            height: 85vh;
+            background-color: #000;
+        }
+
+        .mySlides {
+            display: none;
+            height: 100%;
+            position: relative;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.65;
+            filter: contrast(1.1) brightness(0.9);
+        }
+
+        /* Slide text caption layouts */
+        .slide-caption {
+            position: absolute;
+            bottom: 25%;
+            left: 8%;
+            color: #ffffff;
+            max-width: 650px;
+            animation: slideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 5;
+        }
+
+        .slide-caption h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .slide-caption p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-muted);
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #ff5714;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #ffffff;
+            box-shadow: none;
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background: #ffffff;
+            color: var(--dark);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Next/Prev Triggers */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: 60px;
+            height: 60px;
+            margin-top: -30px;
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s ease;
+            border-radius: 50%;
+            user-select: none;
+            background-color: rgba(255,255,255,0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .prev { left: 30px; }
+        .next { right: 30px; }
+
+        .prev:hover, .next:hover {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Bullet indicators styling */
+        .dot-container {
+            text-align: center;
+            position: absolute;
+            bottom: 35px;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 8px;
+            width: 30px;
+            margin: 0 5px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            display: inline-block;
+            transition: all 0.4s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: var(--primary);
+            width: 50px;
+        }
+
+        /* --- High Quality Collections Grid --- */
+        .products-section {
+            max-width: 1400px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 3.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 1.5rem;
+        }
+
+        .section-title {
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .category-tagline {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 3rem;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            border-color: rgba(255, 69, 0, 0.3);
+            box-shadow: 0 30px 60px rgba(255,69,0,0.1);
+        }
+
+        .img-container {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            background: #1a1f2c;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.08);
+        }
+
+        .product-info {
+            padding: 2.2rem;
+        }
+
+        .product-tag {
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--primary);
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info h3 {
+            margin-bottom: 0.6rem;
+            color: #ffffff;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            height: 45px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .product-price {
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+
+        .product-card .btn {
+            padding: 0.7rem 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        /* --- Dynamic Popup Modal / Instructions Page --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background-color: #12161f;
+            border: 1px solid rgba(255, 69, 0, 0.3);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 550px;
+            padding: 2.5rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        .modal-box h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .modal-box h2 span {
+            color: var(--primary);
+        }
+
+        .modal-box p.subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Input Form Elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            background-color: #1a1f2c;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 0.9rem 1rem;
+            color: #ffffff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .modal-box .btn {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--dark);
+            color: var(--text-muted);
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-top: 8rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Entry Animation */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .slide-caption h1 { font-size: 2.8rem; }
+            .product-grid { grid-template-columns: 1fr; }
+            .prev, .next { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">MOTO<span>VERSE</span></div>
+            <ul class="nav-links">
+                <li><a href="#supersport">SuperSport</a></li>
+                <li><a href="#naked">Hyper-Naked</a></li>
+                <li><a href="#retro">Classic Retro</a></li>
+                <li><a href="#" onclick="openBooking('Premium Lineup')">Book Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="slideshow-container">
+
+            <div class="mySlides">
+                <img src="https://images.unsplash.com/photo-1622185135505-2d79500d793a?auto=format&fit=crop&w=1920&q=90" alt="Ultra HD KTM Duke">
+                <div class="slide-caption">
+                    <h1>KTM DUKE 390</h1>
+                    <p>Unleash the ultimate naked weapon. Raw torque, precise corner tracking, and predatory street dynamics.</p>
+                    <button class="btn" onclick="openBooking('KTM Duke 390')">Configure Build</button>
+                    <button class="btn btn-outline" onclick="openBooking('KTM Duke 390 Test Ride')">Test Ride</button>
+                </div>
+            </div>
+
+            <div class="mySlides">
+                <img src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=1920&q=90" alt="Ultra HD Yamaha R15">
+                <div class="slide-caption">
+                    <h1>YAMAHA YZF R15 V4</h1>
+                    <p>Track engineering bred into an aggressive everyday super-sport machine. Sharpen your apex lines.</p>
+                    <button class="btn" onclick="openBooking('Yamaha R15 V4')">Explore R-Series</button>
+                </div>
+            </div>
+
+            <div class="mySlides">
+                <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1920&q=90" alt="Ultra HD Royal Enfield">
+                <div class="slide-caption">
+                    <h1>RE CONTINENTAL GT</h1>
+                    <p>Pure mechanical symphony. Rediscover the golden era of British café racing with unparalleled engineering.</p>
+                    <button class="btn" onclick="openBooking('RE Continental GT 650')">Reserve Custom Unit</button>
+                </div>
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+            <div class="dot-container">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+
+
+        <section id="supersport" class="products-section">
+            <div class="section-header">
+                <h2 class="section-title">SuperSport <span>Racing</span></h2>
+                <div class="category-tagline">Aerodynamic high-revving track weapons</div>
+            </div>
+            <div class="product-grid">
+                
+                <div class="product-card">
+                    <div class="img-container">
+                        <img class="product-img" src="https://images.unsplash.com/photo-1615172282427-19e924a6c452?auto=format&fit=crop&w=800&q=85" alt="Yamaha R15 Racing Blue">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-tag">Yamaha Racing</div>
+                        <h3>YZF R15 V4 Intensity</h3>
+                        <p class="product-desc">Features traction control system, quick shifter, and upside-down forks directly adapted from premium M1 track machines.</p>
+                        <div class="product-meta">
+                            <div class="product-price">₹1,82,000</div>
+                            <button class="btn" onclick="openBooking('YZF R15 V4')">Book Unit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="img-container">
+                        <img class="product-img" src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=800&q=85" alt="KTM RC 390">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-tag">KTM Factory</div>
+                        <h3>KTM RC 390 Absolute</h3>
+                        <p class="product-desc">Full race-derived fairing design containing switchable cornering ABS alongside a brutal 43hp single-cylinder engine.</p>
+                        <div class="product-meta">
+                            <div class="product-price">₹3,18,000</div>
+                            <button class="btn" onclick="openBooking('KTM RC 390')">Book Unit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section id="naked" class="products-section">
+            <div class="section-header">
+                <h2 class="section-title">Hyper-Naked <span>Streets</span></h2>
+                <div class="category-tagline">Aggressive ergonomics engineered for concrete jungles</div>
+            </div>
+            <div class="product-grid">
+                
+                <div class="product-card">
+                    <div class="img-container">
+                        <img class="product-img" src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?auto=format&fit=crop&w=800&q=85" alt="KTM Duke 390 Side View">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-tag">KTM Naked</div>
+                        <h3>Duke 390 Gen-3</h3>
+                        <p class="product-desc">The beast evolving. Ride-by-wire mechanics mixed with launch control and customizable electronic engine maps.</p>
+                        <div class="product-meta">
+                            <div class="product-price">₹3,11,000</div>
+                            <button class="btn" onclick="openBooking('Duke 390 Gen-3')">Book Unit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="img-container">
+                        <img class="product-img" src="https://images.unsplash.com/photo-1610452601931-1555df3fc8f2?auto=format&fit=crop&w=800&q=85" alt="Yamaha MT 15">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-tag">Yamaha Dark</div>
+                        <h3>Yamaha MT-15 Ver 2.0</h3>
+                        <p class="product-desc">The Dark Warrior. Stripped-back frame offering ultra-agile hyper-naked control layouts with signature bi-functional LED eyes.</p>
+                        <div class="product-meta">
+                            <div class="product-price">₹1,68,000</div>
+                            <button class="btn" onclick="openBooking('Yamaha MT-15 V2')">Book Unit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section id="retro" class="products-section">
+            <div class="section-header">
+                <h2 class="section-title">Classic <span>& Retro Cruiser</span></h2>
+                <div class="category-tagline">Thumping heritage builds made for highway touring</div>
+            </div>
+            <div class="product-grid">
+                
+                <div class="product-card">
+                    <div class="img-container">
+                        <img class="product-img" src="https://images.unsplash.com/photo-1304523996590-b1bfbfba4328?auto=format&fit=crop&w=800&q=85" alt="Royal Enfield Classic Vintage">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-tag">Royal Enfield</div>
+                        <h3>Classic 350 Chrome</h3>
+                        <p class="product-desc">Timeless post-war design philosophy unified seamlessly with modern J-series ultra-smooth balancing counter-shaft engines.</p>
+                        <div class="product-meta">
+                            <div class="product-price">₹2,25,000</div>
+                            <button class="btn" onclick="openBooking('Classic 350 Chrome')">Book Unit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="img-container">
+                        <img class="product-img" src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=85" alt="Royal Enfield Continental GT 650 Cafe Racer">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-tag">Royal Enfield Twin</div>
+                        <h3>Continental GT 650</h3>
+                        <p class="product-desc">Genuine twin-cylinder overhead cam layout pumping historical café culture right back into modern highway tours.</p>
+                        <div class="product-meta">
+                            <div class="product-price">₹3,45,000</div>
+                            <button class="btn" onclick="openBooking('Continental GT 650')">Book Unit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeBooking()">&times;</span>
+            <h2>Secure Your <span>Ride</span></h2>
+            <p class="subtitle">Enter your details below. Our dealership advisors will contact you with regional pricing options shortly.</p>
+            
+            <form onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="bikeModel">Selected Model</label>
+                    <input type="text" id="bikeModel" readonly style="background-color: #0a0c10; border-color: rgba(255,69,0,0.2); color: var(--primary); font-weight: bold;">
+                </div>
+                
+                <div class="form-group">
+                    <label for="userName">Full Name</label>
+                    <input type="text" id="userName" placeholder="e.g. John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userPhone">Phone Number</label>
+                    <input type="tel" id="userPhone" placeholder="e.g. +91 98765 43210" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userAddress">Delivery / Residential Address</label>
+                    <textarea id="userAddress" placeholder="Enter your full structural street address, city, and zip code" required></textarea>
+                </div>
+
+                <button type="submit" class="btn">Submit Secure Order</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MotoVerse International. Standard configurations shown. Actual color finishes and safety metrics can vary per localization specifications.</p>
+    </footer>
+
+    <script>
+        /* --- Slideshow Logic --- */
+        let slideIndex = 1;
+        let slideTimer;
+
+        showSlides(slideIndex);
+        resetTimer();
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+            resetTimer();
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+            resetTimer();
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            
+            if (n > slides.length) {slideIndex = 1}    
+            if (n < 1) {slides.length}
+            if (n < 1) {slideIndex = slides.length}
+            
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
+        }
+
+        function resetTimer(){
+            clearInterval(slideTimer);
+            slideTimer = setInterval(function(){
+                plusSlides(1);
+            }, 6000); 
+        }
+
+        /* --- Modal Popup Form Controls --- */
+        const modal = document.getElementById('bookingModal');
+        const bikeInputField = document.getElementById('bikeModel');
+
+        function openBooking(modelName) {
+            bikeInputField.value = modelName;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Lock background scrolling
+        }
+
+        function closeBooking() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Re-enable background scrolling
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault(); // Stop page refresh
+            
+            const name = document.getElementById('userName').value;
+            const phone = document.getElementById('userPhone').value;
+            const address = document.getElementById('userAddress').value;
+            const bike = bikeInputField.value;
+
+            // Display confirmation alert containing data details
+            alert(`Booking Request Received Successfully!\n\nVehicle: ${bike}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n\nOur MotoVerse team will reach out within 24 hours.`);
+            
+            // Clear inputs and close out window
+            e.target.reset();
+            closeBooking();
+        }
+
+        // Close modal if user clicks anywhere outside the dark box container
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeBooking();
+            }
+        }
+    </script>
+</body>
+</html>
